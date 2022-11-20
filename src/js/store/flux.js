@@ -1,27 +1,34 @@
+import axios from "axios";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			favorite:[],
+			people: [
+				
+			],
+			planets: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
+			
 			loadSomeData: () => {
+			
+					
+					axios.get("https://www.swapi.tech/api/people").then((res)=> {
+						setStore({people: [res.data.results]});
+						console.log("store", getStore().people);
+			})
+			
+			
+			
 				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
+				 * 
+				
+				fetch().then().then(data => setStore({ "foo": data.bar }))
 				*/
 			},
 			changeColor: (index, color) => {
