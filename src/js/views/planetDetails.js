@@ -1,10 +1,12 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link, useParams } from "react-router-dom";
+import ReactImageFallback from "react-image-fallback";
 
 const PlanetsDetails = () => {
     const {store, actions} = useContext(Context);
     const {id} = useParams();
+    const imageFromSw = "https://starwars-visualguide.com/assets/img/planets/"
     
     useEffect(() => {
         console.log(id);
@@ -21,7 +23,13 @@ const PlanetsDetails = () => {
                 <div className="card mb-3" style={{maxwidth: "540px"}}>
                     <div className="row g-0">
                         <div className="col-md-4">
-                            <img src={"https://starwars-visualguide.com/assets/img/planets/" + id + ".jpg"} className="img-fluid rounded-start" alt="..."></img>
+                           
+                            <ReactImageFallback
+                                src={imageFromSw + + id + ".jpg"}
+                                fallbackImage="https://png.pngitem.com/pimgs/s/170-1707876_panda-rounded-face-svg-clip-arts-funny-cartoon.png"
+                                initialImage=""
+                                alt="cool image should be here"
+                                className="img-fluid rounded-start"/>
                         </div>
                         <div className="col-md-8">
                             <div className="card-body">

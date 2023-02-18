@@ -17,3 +17,9 @@
     font-family: 'Star Wars', sans-serif;
     color: red;
 }
+
+.img-fluid {
+    height: 30rem;
+    width:80%; 
+    object-fit: cover;
+}

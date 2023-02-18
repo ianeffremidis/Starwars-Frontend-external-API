@@ -1,11 +1,12 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link, useParams } from "react-router-dom";
+import ReactImageFallback from "react-image-fallback";
 
 const VehiclesDetails = () => {
     const {store, actions} = useContext(Context);
     const {id} = useParams();
-    
+    const imageFromSw = "https://starwars-visualguide.com/assets/img/vehicles/"
     useEffect(() => {
         console.log(id);
         actions.getSingleVehicle(id);
@@ -20,7 +21,13 @@ const VehiclesDetails = () => {
                 <div className="card mb-3" style={{maxwidth: "540px"}}>
                     <div className="row g-0">
                         <div className="col-md-4">
-                            <img src={"https://starwars-visualguide.com/assets/img/vehicles/" + id + ".jpg"} className="img-fluid rounded-start" alt="..."></img>
+                            
+                            <ReactImageFallback
+                                src={imageFromSw + id + ".jpg"}
+                                fallbackImage="https://media.istockphoto.com/id/1152232977/photo/crashed-car-in-front-side-car-insurance-concept.jpg?s=612x612&w=0&k=20&c=Oyz_YgXOoK4Ayd7N7IuSgBCXFfSTgyyNAkhGTeZq3Uo="
+                                initialImage=""
+                                alt="cool image should be here"
+                                className="img-fluid rounded-start"/>
                         </div>
                         <div className="col-md-8">
                             <div className="card-body">                                   
