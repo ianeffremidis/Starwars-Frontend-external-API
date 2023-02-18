@@ -1,17 +1,36 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 export const Navbar = () => {
+	const {store, actions} = useContext(Context);
+
 	return (
-		<nav className="navbar navbar-light bg-light mb-3">
-			<Link to="/">
-				<span className="navbar-brand mb-0 h1">React Boilerplate</span>
-			</Link>
-			<div className="ml-auto">
-				<Link to="/demo">
-					<button className="btn btn-primary">Check the Context in action</button>
+		<div className="sticky-top">
+			<nav className="navbar navbar-light bg-light mb-3">
+				<Link to="/">
+					<img src="https://logodix.com/logo/581257.gif" alt="Star Wars" height="70" className="d-inline-block  ms-5"></img>
 				</Link>
-			</div>
-		</nav>
+
+				<div className="btn-group dropstart">
+					<button type="button" className="btn btn-outline-dark dropdown-toggle me-5" data-bs-toggle="dropdown" aria-expanded="false">
+						Favorites <span className="badge bg-danger">{store.favorites.length}</span>
+					</button>
+					<ul className="dropdown-menu dropdown-menu-end">
+						{store.favorites.map((item,i) => {
+						return (
+							<li key={i}><a className="dropdown-item d-flex justify-content-between">
+			
+								<Link to={`/charDetails/${item.id}`}>{item.name}</Link>
+								<button className="btn btn-outline-dark border-0 btn-sm" > <i className="fa-solid fa fa-trash" onClick={()=> actions.deleteFavorites(i)}></i></ button>
+								</a>
+							</li>
+							)
+						})
+						}
+					</ul>
+				</div>
+			</nav>
+		</div>
 	);
 };
