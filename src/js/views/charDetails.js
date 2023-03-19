@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 import { Link, useParams } from "react-router-dom";
 import ReactImageFallback from "react-image-fallback";
 
-const CharDetails = () => {
+const CharDetails = (type) => {
     const {store, actions} = useContext(Context);
     const {id} = useParams();
     const imageFromSw = "https://starwars-visualguide.com/assets/img/characters/"

@@ -4,6 +4,7 @@ import { Context } from "../store/appContext";
 
 export const Navbar = () => {
 	const {store, actions} = useContext(Context);
+	
 
 	return (
 		<div className="sticky-top">
@@ -21,7 +22,11 @@ export const Navbar = () => {
 						return (
 							<li key={i}><a className="dropdown-item d-flex justify-content-between">
 			
-								<Link to={`/charDetails/${item.id}`}>{item.name}</Link>
+								{item.type==="character" && <Link to={`/charDetails/${item.id}`}>{item.name}</Link>}
+								{item.type==="planet" && <Link to={`/planetDetails/${item.id}`}>{item.name}</Link>}
+								{item.type==="vehicle" && <Link to={`/vehicleDetails/${item.id}`}>{item.name}</Link>}
+
+								
 								<button className="btn btn-outline-dark border-0 btn-sm" > <i className="fa-solid fa fa-trash" onClick={()=> actions.deleteFavorites(i)}></i></ button>
 								</a>
 							</li>

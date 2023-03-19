@@ -110,7 +110,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return [];
 				}
 			},
-			addFavorites: (itemName, itemUid) => {
+			addFavorites: (itemName, itemUid, type) => {
 
 				const {favorites} = getStore();
 				
@@ -121,7 +121,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const mapFav = favorites.map(item=>item.name)
 				
 				if (!mapFav.find(i => i == itemName )){
-					favorites.push({name: itemName, id: itemUid})
+					favorites.push({name: itemName, id: itemUid, type: type })
 					console.log("not on the list, added")
 				}
 				else{

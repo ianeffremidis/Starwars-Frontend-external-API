@@ -27,7 +27,7 @@ const Vehicles = () => {
                             Learn more!
 						</button>
 					</Link>
-        <button key={i} type="button" className="btn btn-outline-danger" onClick={() => actions.addFavorites(value.name, value.uid)}>
+        <button key={i} type="button" className="btn btn-outline-danger" onClick={() => actions.addFavorites(value.name, value.uid, "vehicle")}>
         {mapFav.includes(value.name) ? <i key={i} className="fa-solid fa fa-heart"></i> : <i key={i} className="far fa-heart"></i>}
         </button>
 				</div>
